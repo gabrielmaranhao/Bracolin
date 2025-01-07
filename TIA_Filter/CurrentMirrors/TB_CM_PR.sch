@@ -173,11 +173,11 @@ N 670 -390 670 -350 {
 lab=INp}
 N 670 -290 670 -260 {
 lab=GND}
-C {devices/code_shown.sym} -1140 -250 0 0 {name=MODELS only_toplevel=true
+C {devices/code_shown.sym} -1140 -260 0 0 {name=MODELS only_toplevel=true
 format="tcleval( @value )"
 value="
 .include $::180MCU_MODELS/design.ngspice
-.lib $::180MCU_MODELS/sm141064.ngspice typical
+.lib $::180MCU_MODELS/sm141064.ngspice fs
 
 .param sw_stat_mismatch=1
 .param sw_stat_global=1
@@ -205,17 +205,17 @@ remzerovec
 write TB_CM_PR.raw
 set appendwrite
 
-dc Vo2 0 3.3 10m
+dc Vo 0 3.3 10m
 remzerovec 
 write TB_CM_PR.raw
-wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/CurrentMirrors/plots/CM_input_data/CM_PR_dc_SF.txt i(v1) i(v2) i(v13) i(v14)
+wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/CurrentMirrors/plots/CM_input_data/CM_PR_dc_N_FS.txt i(v1) i(v2) i(v13) i(v14)
 set appendwrite
 
 
 .endc
 .save all
 "
-spice_ignore=true}
+}
 C {devices/lab_wire.sym} -410 -290 0 0 {name=p1 sig_type=std_logic lab=VDD
 }
 C {devices/ammeter.sym} 140 -220 0 1 {name=V1 savecurrent=true
@@ -369,4 +369,4 @@ end
 .endc
 .save all
 "
-}
+spice_ignore=true}

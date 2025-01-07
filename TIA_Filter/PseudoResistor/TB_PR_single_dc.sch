@@ -52,8 +52,8 @@ subdivy=1
 
 
 
-x1=-0.04
-x2=0.04
+x1=-0.2
+x2=0.2
 y1=-6.4e-13
 y2=6.4e-13
 dataset=-1}
@@ -104,12 +104,12 @@ rainbow=1
 
 
 
-y1=2.1e+11
-y2=6.8e+11
+y1=2.7714286e+11
+y2=7.4714286e+11
 
 dataset=-1
-x1=-0.04
-x2=0.04}
+x1=-0.2
+x2=0.2}
 B 2 1230 270 2030 670 {flags=graph
 
 
@@ -135,8 +135,8 @@ logy=0
 
 
 y2=1.9
-x1=-0.04
-x2=0.04
+x1=-0.2
+x2=0.2
 y1=1.4
 color="4 5"
 node="vxb
@@ -190,14 +190,14 @@ subdivy=1
 
 
 
-x1=-0.04
-x2=0.04
-y1=-1.3e-14
-y2=-6.6e-15
+x1=-0.2
+x2=0.2
+y1=-3.2e-13
+y2=3.2e-13
 dataset=-1
 
 color=4
-node=idiff_plus}
+node=idiff_2}
 B 2 2060 -150 2860 250 {flags=graph
 
 
@@ -205,7 +205,7 @@ ypos1=0
 ypos2=2
 
 
-unity=f
+unity=1
 
 
 
@@ -245,13 +245,14 @@ subdivy=1
 
 
 
-x1=-0.04
-x2=0.04
-y1=1e-14
-y2=1.1e-14
+x1=-0.2
+x2=0.2
+y1=1.27
+y2=3.17
 dataset=-1
-color=4
-node="\\"I_leakP;i(v.x6.x1.x2.v_leak_p)\\""}
+color="4 6"
+node="x1.net1
+x1.net2"}
 B 2 2060 250 2860 650 {flags=graph
 
 
@@ -299,10 +300,10 @@ subdivy=1
 
 
 
-x1=-0.04
-x2=0.04
-y1=-2.8e-16
-y2=-2.7e-16
+x1=-0.2
+x2=0.2
+y1=0
+y2=0.01
 dataset=-1
 color=4
 node="\\"I_leakN;i(v.x6.x1.x1.v_leak_n)\\""}
@@ -416,12 +417,12 @@ value="
 "}
 C {devices/code_shown.sym} -420 -300 0 0 {name=NGSPICE only_toplevel=true
 value="
-.option gmin=1e-17
+.option gmin=1e-19
 
 *.option RELTOL=1e-9
 *.OPTION ABSTOL=1e2
 
-.option klu
+*.option klu
 
 .param ibias = 1p
 .param it_amp = 2p
@@ -431,22 +432,22 @@ value="
 .control
 save all
 
-op
-remzerovec 
-write TB_PR_single_dc.raw
-set appendwrite
+*op
+*remzerovec 
+*write TB_PR_single_dc.raw
+*set appendwrite
 
 set temp=27
-dc VX1 -100m 100m 1m
+dc VX1 -200m 200m 10m
 
 let idiff = i(vai)-i(vbi)
-let idiff_plus = i(vai)+i(vbi)
+let idiff_2 = idiff/2
 let Rdiff = 4/deriv(idiff)
 
-save idiff Rdiff idiff_plus
+save idiff Rdiff idiff_2
 remzerovec
 write TB_PR_single_dc.raw
-*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/PseudoResistor/plots/data_DC/PR_single_DC.txt idiff Rdiff
+*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/PseudoResistor/plots/data_DC/19_12_24_PR_single_ID_Rdiff_GF180.txt idiff Rdiff
 
 .endc
 "
@@ -460,8 +461,6 @@ xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]
 C {devices/launcher.sym} 870 -400 0 0 {name=h2
 descr="Annotate OP" 
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
-}
-C {PRbiased_net.sym} 470 -150 0 0 {name=x6
 }
 C {devices/isource.sym} 320 -100 0 1 {name=I4 value=\{it_amp\}}
 C {devices/isource.sym} 350 -90 2 1 {name=I5 value=\{it_amp\}}
@@ -566,3 +565,4 @@ write TB_PR_single_dc.raw
 .endc
 "
 spice_ignore=true}
+C {PseudoResistor/PRbiased_net.sym} 470 -150 0 0 {name=x1}

@@ -38,8 +38,8 @@ hilight_wave=-1
 
 
 divx=10
-y1=-30
-y2=45
+y1=-24
+y2=42
 
 
 rainbow=1
@@ -49,7 +49,7 @@ subdivx=8
 subdivy=1
 
 
-x1=-3.604294
+x1=-3
 
 
 sim_type=ac
@@ -60,7 +60,7 @@ node="\\"vout db20()\\""
 
 
 dataset=-1
-x2=7.3957062}
+x2=8}
 N -720 10 -720 30 {
 lab=GND}
 N -720 -70 -720 -50 {
@@ -110,7 +110,7 @@ lab=VCM}
 N -340 30 -340 40 {
 lab=GND}
 N -240 110 -240 130 {
-lab=VSS}
+lab=GND}
 N -250 90 -240 90 {
 lab=VDD}
 N 10 90 100 90 {
@@ -150,9 +150,9 @@ lab=GND}
 N -840 30 -840 60 {
 lab=VSS}
 N -300 140 -240 140 {
-lab=VSS}
+lab=GND}
 N -240 130 -240 140 {
-lab=VSS}
+lab=GND}
 C {devices/launcher.sym} 795 -345 0 0 {name=h1
 descr="Click left mouse button here with control key
 pressed to load/unload waveforms in graph."
@@ -195,7 +195,7 @@ C {Filter_TOP.sym} -270 180 0 0 {name=x1
 C {devices/gnd.sym} -340 40 0 1 {name=l2 lab=GND}
 C {devices/lab_wire.sym} -250 90 0 0 {name=p3 sig_type=std_logic lab=VDD}
 C {devices/lab_wire.sym} -460 270 0 0 {name=p6 sig_type=std_logic lab=VDD}
-C {devices/code_shown.sym} -1560 170 0 0 {name=NGSPICE1 only_toplevel=true
+C {devices/code_shown.sym} -1600 120 0 0 {name=NGSPICE1 only_toplevel=true
 value="
 .option gmin=1e-14
 *.option abstol=1e-2
@@ -221,7 +221,7 @@ set temp = 27
 ac dec 10 1m 1e8
 remzerovec
 write TB_filter_ac_top2.raw
-*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/FilterPlots/Filter_PR_AC_TT_10.txt V(Vout)
+*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/FilterPlots/Filter_PR_AC_FS.txt V(Vout)
 set appendwrite
 
 .endc
@@ -244,8 +244,7 @@ value="
 C {devices/vsource.sym} -840 90 0 0 {name=VSS value=0}
 C {devices/lab_wire.sym} -840 30 0 0 {name=p12 sig_type=std_logic lab=VSS}
 C {devices/gnd.sym} -840 140 0 0 {name=l4 lab=GND}
-C {devices/lab_wire.sym} -300 140 0 0 {name=p13 sig_type=std_logic lab=VSS}
-C {devices/code_shown.sym} -1580 -80 0 0 {name=MODELS only_toplevel=true
+C {devices/code_shown.sym} -1580 -150 0 0 {name=MODELS only_toplevel=true
 format="tcleval( @value )"
 value="
 .include $::180MCU_MODELS/design.ngspice
@@ -255,4 +254,38 @@ value="
 .lib $::180MCU_MODELS/sm141064.ngspice cap_mim
 .lib $::180MCU_MODELS/sm141064.ngspice mimcap_typical
 .lib $::180MCU_MODELS/sm141064.ngspice moscap_typical
+
+*.param sw_stat_mismatch=1
+*.param sw_stat_global=1
 "}
+C {devices/code_shown.sym} -1540 780 0 0 {name=NGSPICE2 only_toplevel=true
+value="
+.option gmin=1e-14
+*.option abstol=1e-2
+.option klu
+*.option method=gear
+
+.param iref = 500n
+.param ipr = 1n
+
+
+.control
+let sample_index = 0
+
+while sample_index < 150
+reset
+
+ac dec 10 1m 1e6
+remzerovec
+write TB_filter_ac_top.raw
+wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/FilterPlots/Filter_PR_AC_TT_MC_[$&sample_index].txt V(Vout)
+set appendwrite
+
+let sample_index = sample_index + 1
+end
+
+.endc
+.save all
+"
+spice_ignore=true}
+C {devices/gnd.sym} -260 140 0 0 {name=l3 lab=GND}
