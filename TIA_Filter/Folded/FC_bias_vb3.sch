@@ -30,17 +30,17 @@ lab=VSS}
 N 360 -120 370 -120 {
 lab=VSS}
 N 310 -210 320 -210 {
-lab=VB3}
+lab=#net6}
 N 310 -210 310 150 {
-lab=VB3}
+lab=#net6}
 N 310 150 320 150 {
-lab=VB3}
+lab=#net6}
 N 310 60 320 60 {
-lab=VB3}
+lab=#net6}
 N 310 -30 320 -30 {
-lab=VB3}
+lab=#net6}
 N 310 -120 320 -120 {
-lab=VB3}
+lab=#net6}
 N 360 270 360 300 {
 lab=VSS}
 N 370 240 370 300 {
@@ -48,17 +48,17 @@ lab=VSS}
 N 360 300 370 300 {
 lab=VSS}
 N 360 -270 360 -240 {
-lab=VB3}
+lab=#net6}
 N 310 150 310 240 {
-lab=VB3}
+lab=#net6}
 N 310 240 320 240 {
-lab=VB3}
+lab=#net6}
 N 310 -260 310 -210 {
-lab=VB3}
+lab=#net6}
 N 310 -260 360 -260 {
-lab=VB3}
+lab=#net6}
 N 360 -290 360 -270 {
-lab=VB3}
+lab=#net6}
 N 360 300 360 340 {
 lab=VSS}
 N 560 -160 570 -160 {
@@ -75,6 +75,8 @@ N 560 -200 560 -160 {
 lab=VSS}
 N 600 -160 600 -130 {
 lab=VSS}
+N 360 -370 360 -350 {
+lab=VB3}
 C {symbols/nfet_03v3.sym} 340 -210 0 0 {name=M1
 L=2u
 W=1.2u
@@ -161,7 +163,7 @@ spiceprefix=X
 }
 C {devices/iopin.sym} 220 -100 0 1 {name=p21 lab=VSS}
 C {devices/iopin.sym} 220 -120 0 1 {name=p23 lab=VB3}
-C {devices/lab_wire.sym} 360 -290 0 0 {name=p3 sig_type=std_logic lab=VB3}
+C {devices/lab_wire.sym} 360 -370 0 0 {name=p3 sig_type=std_logic lab=VB3}
 C {devices/lab_wire.sym} 360 340 2 1 {name=p1 sig_type=std_logic lab=VSS}
 C {symbols/nfet_03v3.sym} 600 -180 1 0 {name=M3[1:14]
 L=2u
@@ -178,3 +180,4 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {devices/lab_wire.sym} 590 -200 0 0 {name=p2 sig_type=std_logic lab=VSS}
+C {devices/ammeter.sym} 360 -320 0 0 {name=Vmeas savecurrent=true spice_ignore=0}

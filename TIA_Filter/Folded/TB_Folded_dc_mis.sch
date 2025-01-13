@@ -52,7 +52,7 @@ lab=Vout}
 N 790 -260 790 30 {
 lab=Vout}
 C {devices/vsource.sym} 240 -80 0 0 {name=VDD value=3.3}
-C {devices/isource.sym} 560 -130 0 0 {name=Iref value=20n}
+C {devices/isource.sym} 560 -130 0 0 {name=Iref value=100n}
 C {devices/gnd.sym} 240 -30 0 0 {name=l1 lab=GND}
 C {devices/lab_wire.sym} 240 -130 0 0 {name=p1 sig_type=std_logic lab=AVDD}
 C {devices/lab_wire.sym} 630 -320 0 1 {name=p3 sig_type=std_logic lab=AVDD}
@@ -67,7 +67,6 @@ C {devices/gnd.sym} 810 -170 0 0 {name=l5 lab=GND}
 C {devices/gnd.sym} 630 -200 0 0 {name=l7 lab=GND}
 C {devices/lab_wire.sym} 400 -300 0 1 {name=p2 sig_type=std_logic lab=Vin}
 C {devices/gnd.sym} 560 -60 0 0 {name=l3 lab=GND}
-C {FoldedCascode.sym} 620 -260 0 0 {name=x1}
 C {devices/vsource.sym} 130 -270 0 1 {name=V1 value="1.65 DC 1 AC"
 }
 C {devices/gnd.sym} 130 -220 0 0 {name=l2 lab=GND
@@ -94,7 +93,7 @@ reset
 op
 remzerovec 
 write TB_TIA_dc_mis.raw
-wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/plots/offset/offset20n.txt V(vout)
+wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/plots/offset/offset100n.txt V(vout)
 set appendwrite
 
 let sample_index = sample_index + 1
@@ -103,3 +102,4 @@ end
 .endc
 .save all
 "}
+C {Folded/FoldedCascode.sym} 620 -260 0 0 {name=x1}

@@ -38,7 +38,7 @@ hilight_wave=-1
 
 
 divx=10
-y1=-24
+y1=-71
 y2=42
 
 
@@ -57,6 +57,62 @@ sim_type=ac
 
 color=4
 node="\\"vout db20()\\""
+
+
+dataset=-1
+x2=8}
+B 2 730 300 1580 830 {flags=graph
+
+
+ypos1=0
+ypos2=2
+
+
+unity=1
+
+
+
+
+xlabmag=1.0
+ylabmag=1.0
+
+
+
+unitx=1
+logx=1
+logy=0
+
+
+
+
+
+
+
+hilight_wave=-1
+
+
+
+
+divx=10
+y1=0
+y2=0.01
+
+
+rainbow=1
+linewidth_mult=4.0
+divy=10
+subdivx=8
+subdivy=1
+
+
+x1=-3
+
+
+sim_type=ac
+
+
+
+
 
 
 dataset=-1
@@ -94,9 +150,9 @@ lab=Vin_pos}
 N 10 -50 60 -50 {
 lab=Vout}
 N 70 170 70 210 {
-lab=#net1}
+lab=IBPOUT}
 N 100 150 100 190 {
-lab=#net2}
+lab=IBNOUT}
 N 100 250 100 270 {
 lab=GND}
 N 70 270 70 290 {
@@ -145,14 +201,18 @@ N -360 260 -360 270 {
 lab=VDD}
 N -430 260 -430 270 {
 lab=VDD}
-N -840 120 -840 140 {
+N -840 20 -840 40 {
 lab=GND}
-N -840 30 -840 60 {
+N -840 -70 -840 -40 {
 lab=VSS}
 N -300 140 -240 140 {
 lab=GND}
 N -240 130 -240 140 {
 lab=GND}
+N 70 110 70 180 {
+lab=IBPOUT}
+N 100 90 100 160 {
+lab=IBNOUT}
 C {devices/launcher.sym} 795 -345 0 0 {name=h1
 descr="Click left mouse button here with control key
 pressed to load/unload waveforms in graph."
@@ -183,8 +243,6 @@ C {devices/vsource.sym} -410 -20 0 1 {name=V2 value="1.65 DC 1 AC"
 C {devices/gnd.sym} -410 110 0 1 {name=l13 lab=GND}
 C {devices/isource.sym} -360 230 2 1 {name=I0 value=\{iref\}}
 C {devices/isource.sym} -430 230 2 1 {name=I1 value=\{ipr\}}
-C {devices/ammeter.sym} 100 120 0 0 {name=Vmeas savecurrent=true}
-C {devices/ammeter.sym} 70 140 0 1 {name=Vmeas1 savecurrent=true}
 C {devices/vsource.sym} -340 0 0 1 {name=Vcm value=1.65}
 C {devices/vsource.sym} 70 240 0 1 {name=VDD2 value=1.65}
 C {devices/vsource.sym} 100 220 0 0 {name=VDD3 value=1.65}
@@ -206,8 +264,8 @@ value="
 
 *.nodeset V(Vout)=1.645
 
-.param iref = 500n
-.param ipr = 1n
+.param iref = 1u
+.param ipr = 980n
 
 .control
 save all
@@ -241,9 +299,9 @@ value="
 
 *Xss VDD VSS VDD gf180mcu_fd_io__dvss
 "}
-C {devices/vsource.sym} -840 90 0 0 {name=VSS value=0}
-C {devices/lab_wire.sym} -840 30 0 0 {name=p12 sig_type=std_logic lab=VSS}
-C {devices/gnd.sym} -840 140 0 0 {name=l4 lab=GND}
+C {devices/vsource.sym} -840 -10 0 0 {name=VSS value=0}
+C {devices/lab_wire.sym} -840 -70 0 0 {name=p12 sig_type=std_logic lab=VSS}
+C {devices/gnd.sym} -840 40 0 0 {name=l4 lab=GND}
 C {devices/code_shown.sym} -1580 -150 0 0 {name=MODELS only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -278,7 +336,7 @@ reset
 ac dec 10 1m 1e6
 remzerovec
 write TB_filter_ac_top.raw
-wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/FilterPlots/Filter_PR_AC_TT_MC_[$&sample_index].txt V(Vout)
+*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/FilterPlots/Filter_PR_AC_TT_MC_[$&sample_index].txt V(Vout)
 set appendwrite
 
 let sample_index = sample_index + 1

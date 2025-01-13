@@ -177,7 +177,7 @@ C {devices/code_shown.sym} -1140 -260 0 0 {name=MODELS only_toplevel=true
 format="tcleval( @value )"
 value="
 .include $::180MCU_MODELS/design.ngspice
-.lib $::180MCU_MODELS/sm141064.ngspice fs
+.lib $::180MCU_MODELS/sm141064.ngspice typical
 
 .param sw_stat_mismatch=1
 .param sw_stat_global=1
@@ -215,7 +215,7 @@ set appendwrite
 .endc
 .save all
 "
-}
+spice_ignore=true}
 C {devices/lab_wire.sym} -410 -290 0 0 {name=p1 sig_type=std_logic lab=VDD
 }
 C {devices/ammeter.sym} 140 -220 0 1 {name=V1 savecurrent=true
@@ -266,7 +266,7 @@ C {devices/lab_wire.sym} 440 -180 0 0 {name=p20 sig_type=std_logic lab=o11
 }
 C {devices/lab_wire.sym} 460 -220 0 1 {name=p21 sig_type=std_logic lab=o12
 }
-C {devices/vsource.sym} -320 -230 0 0 {name=Vo value=3
+C {devices/vsource.sym} -320 -230 0 0 {name=Vo value=1.65
 }
 C {devices/gnd.sym} -320 -180 0 1 {name=l3 lab=GND
 }
@@ -336,7 +336,7 @@ C {devices/isource.sym} 670 -320 0 1 {name=I1 value=\{i_sbcs\}
 }
 C {devices/gnd.sym} 670 -260 0 1 {name=l4 lab=GND
 }
-C {devices/vsource.sym} -240 -230 0 0 {name=Vo2 value=3
+C {devices/vsource.sym} -240 -230 0 0 {name=Vo2 value=1.65
 }
 C {devices/code_shown.sym} -1130 630 0 0 {name=NGSPICE1 only_toplevel=true
 value="
@@ -369,4 +369,4 @@ end
 .endc
 .save all
 "
-spice_ignore=true}
+}

@@ -38,8 +38,8 @@ hilight_wave=-1
 
 
 divx=10
-y1=-24
-y2=42
+y1=-75
+y2=-23
 
 
 rainbow=1
@@ -217,7 +217,7 @@ C {devices/code_shown.sym} -1220 -390 0 0 {name=MODELS only_toplevel=true
 format="tcleval( @value )"
 value="
 .include $::180MCU_MODELS/design.ngspice
-.lib $::180MCU_MODELS/sm141064.ngspice fs
+.lib $::180MCU_MODELS/sm141064.ngspice typical
 .lib $::180MCU_MODELS/sm141064.ngspice cap_mim
 .lib $::180MCU_MODELS/sm141064.ngspice mimcap_typical
 
@@ -266,7 +266,7 @@ set appendwrite
 
 .endc
 "
-}
+spice_ignore=true}
 C {devices/lab_pin.sym} 610 -320 0 1 {name=p5 sig_type=std_logic lab=Vout}
 C {devices/lab_wire.sym} -410 -360 0 0 {name=p2 sig_type=std_logic lab=Vin_pos}
 C {devices/capa.sym} 600 -290 0 0 {name=C2
@@ -396,4 +396,4 @@ end
 .endc
 .save all
 "
-spice_ignore=true}
+}

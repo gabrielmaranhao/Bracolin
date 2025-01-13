@@ -38,8 +38,8 @@ hilight_wave=-1
 
 
 divx=10
-y1=-44
-y2=110
+y1=-60
+y2=63
 
 
 rainbow=0
@@ -121,7 +121,7 @@ descr="Annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
 }
 C {devices/vsource.sym} -190 110 0 0 {name=VDD value=3.3}
-C {devices/isource.sym} 540 -160 0 0 {name=Iref value=200n}
+C {devices/isource.sym} 540 -160 0 0 {name=Iref value=100n}
 C {devices/gnd.sym} -190 160 0 0 {name=l1 lab=GND}
 C {devices/lab_wire.sym} -190 60 0 0 {name=p1 sig_type=std_logic lab=AVDD}
 C {devices/lab_wire.sym} 610 -350 0 1 {name=p3 sig_type=std_logic lab=AVDD}
@@ -142,7 +142,8 @@ C {devices/gnd.sym} 880 -230 0 0 {name=l11 lab=GND}
 C {devices/code_shown.sym} -560 -160 0 0 {name=NGSPICE only_toplevel=true
 value="
 .option gmin=1e-18
-.option klu 
+.option klu
+.options savecurrents
 
 .control
 save all
@@ -164,11 +165,11 @@ write TB_Folded_ac.raw
 
 .endc
 "}
-C {devices/vsource.sym} 110 -300 0 1 {name=V2 value="1.65 DC 1 AC"
-}
+C {devices/vsource.sym} -50 -10 0 1 {name=V2 value="1.65 DC 1 AC"
+spice_ignore=true}
 C {devices/lab_wire.sym} 440 -250 0 0 {name=p4 sig_type=std_logic lab=Vin_neg}
 C {Folded/FoldedCascode.sym} 600 -290 0 0 {name=x1}
 C {devices/gnd.sym} 390 -170 0 0 {name=l4 lab=GND
 }
-C {devices/vsource.sym} 20 -50 0 1 {name=V3 value="1.6498199 DC 1 AC"
-spice_ignore=true}
+C {devices/vsource.sym} 110 -300 0 1 {name=V3 value="1.6498199 DC 1 AC"
+}

@@ -14,7 +14,7 @@ lab=IREF}
 N -130 50 -130 90 {
 lab=IREF}
 N -30 -20 -30 0 {
-lab=VB2}
+lab=#net1}
 N 20 -20 20 10 {
 lab=VB3}
 N 20 180 20 190 {
@@ -23,12 +23,8 @@ N 20 70 20 100 {
 lab=VB3}
 N 80 60 80 100 {
 lab=VB4}
-N -30 0 -30 230 {
-lab=VB2}
 N 80 100 80 230 {
 lab=VB4}
-N 80 -160 80 -20 {
-lab=VDD}
 N -50 -160 80 -160 {
 lab=VDD}
 N 40 230 80 230 {
@@ -41,6 +37,16 @@ N 20 10 20 70 {
 lab=VB3}
 N -80 -10 -80 10 {
 lab=VB1}
+N 80 -160 80 -140 {
+lab=VDD}
+N 80 -80 80 -20 {
+lab=#net2}
+N -30 -0 -30 20 {
+lab=#net1}
+N -30 80 -30 110 {
+lab=VB2}
+N -30 110 -30 230 {
+lab=VB2}
 C {devices/lab_wire.sym} -50 -190 0 1 {name=p37 sig_type=std_logic lab=VDD
 
 }
@@ -70,3 +76,5 @@ C {devices/iopin.sym} -350 -150 0 1 {name=p2 lab=VB4}
 C {devices/iopin.sym} -350 -210 0 1 {name=p3 lab=VB1}
 C {devices/lab_wire.sym} -80 10 0 0 {name=p4 sig_type=std_logic lab=VB1
 }
+C {devices/ammeter.sym} 80 -110 0 0 {name=Vmeas savecurrent=true spice_ignore=0}
+C {devices/ammeter.sym} -30 50 0 0 {name=Vmeas1 savecurrent=true spice_ignore=0}

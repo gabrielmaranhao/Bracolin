@@ -38,8 +38,8 @@ hilight_wave=-1
 
 
 divx=10
-y1=-78
-y2=92
+y1=-65
+y2=96
 
 
 rainbow=0
@@ -49,8 +49,8 @@ subdivx=8
 subdivy=1
 
 
-x1=-3
-x2=9
+x1=0.21695721
+x2=0.21774707
 color=5
 node="\\"vout db20()\\""}
 B 2 660 360 1460 760 {flags=graph
@@ -86,8 +86,8 @@ hilight_wave=-1
 
 
 divx=10
-y1=0.066
-y2=3.2
+y1=0.074
+y2=3.1
 
 
 rainbow=0
@@ -98,13 +98,13 @@ subdivy=4
 
 
 
-x2=1e+09
+x2=1.651
 
 
 sim_type=dc
 color=4
 node=vout
-x1=0.001}
+x1=1.648}
 N -130 160 -130 180 {
 lab=GND}
 N -130 80 -130 100 {
@@ -163,9 +163,9 @@ value="
 .include $::180MCU_MODELS/design.ngspice
 .lib $::180MCU_MODELS/sm141064.ngspice typical
 
-*.include /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/layout/spice/FC_top_pex2.spice
+.include /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/layout/spice/FC_top_pex2.spice
 
-*X1 Vin VN Vout IREF 0 AVDD FC_top
+X1 Vin VN Vout IREF 0 AVDD FC_top
 "}
 C {devices/code_shown.sym} -1110 -130 0 0 {name=NGSPICE only_toplevel=true
 value="
@@ -183,17 +183,17 @@ remzerovec
 write TB_Folded_dc.raw
 set appendwrite
 
-*dc V1 1.648 1.651 0.001m
+*dc V2 1.648 1.651 0.001m
 *remzerovec
 *write TB_Folded_dc.raw
-*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/plots/DC-AC/Folded_DC_PEX.txt V(Vout)
+*wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/plots/DC-AC/Folded_DC_100n_PEX.txt V(Vout)
 
 
 
 ac dec 10 1m 1e9
 remzerovec
 write TB_Folded_dc.raw
-wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/plots/DC-AC/Folded_AC_20n.txt V(Vout)
+wrdata /home/gmaranhao/Desktop/Bracolin/TIA_Filter/Folded/plots/DC-AC/Folded_AC_100n_PEX.txt V(Vout)
 
 
 .endc
@@ -229,10 +229,8 @@ C {devices/gnd.sym} 500 40 0 0 {name=l7 lab=GND}
 C {devices/lab_wire.sym} 250 -40 0 1 {name=p2 sig_type=std_logic lab=Vin}
 C {devices/gnd.sym} 910 130 0 0 {name=l3 lab=GND
 spice_ignore=true}
-C {FoldedCascode.sym} 470 0 0 0 {name=x1
-}
-C {devices/vsource.sym} -20 -10 0 1 {name=V1 value="1.6497 DC 1 AC"
-}
+C {devices/vsource.sym} -210 10 0 1 {name=V1 value="1.65 DC"
+spice_ignore=true}
 C {devices/gnd.sym} -20 40 0 0 {name=l2 lab=GND
 }
 C {devices/launcher.sym} 725 295 0 0 {name=h3
@@ -252,8 +250,10 @@ C {devices/lab_wire.sym} 980 -50 0 1 {name=p8 sig_type=std_logic lab=AVDD
 spice_ignore=true}
 C {devices/ammeter.sym} 880 -20 0 1 {name=Vmeas savecurrent=true
 spice_ignore=true}
-C {devices/isource.sym} 410 130 0 0 {name=Iref1 value=20n}
+C {devices/isource.sym} 410 130 0 0 {name=Iref1 value=100n}
 C {devices/gnd.sym} 410 200 0 0 {name=l6 lab=GND}
 C {devices/lab_wire.sym} 410 85 0 1 {name=p9 sig_type=std_logic lab=IREF}
-C {devices/vsource.sym} -400 30 0 1 {name=V2 value="1.6498199 DC 1 AC"
+C {devices/vsource.sym} -20 -10 0 1 {name=V2 value="1.649778 DC 1 AC"
+}
+C {Folded/FoldedCascode.sym} 470 0 0 0 {name=x1
 spice_ignore=true}

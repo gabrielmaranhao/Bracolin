@@ -229,7 +229,7 @@ device="ceramic capacitor"}
 C {devices/gnd.sym} 900 -230 0 0 {name=l11 lab=GND}
 C {Folded/FoldedCascode.sym} 620 -290 0 0 {name=x1}
 C {devices/lab_wire.sym} -420 40 0 0 {name=p4 sig_type=std_logic lab=Vin_neg}
-C {devices/isource.sym} 330 -570 0 1 {name=I0 value=500n}
+C {devices/isource.sym} 330 -570 0 1 {name=I0 value=1u}
 C {devices/gnd.sym} 360 -410 0 1 {name=l3 lab=GND}
 C {devices/vsource.sym} 220 -120 0 0 {name=Vcm value=1.65}
 C {devices/gnd.sym} 220 -60 0 1 {name=l6 lab=GND}
